@@ -16,6 +16,7 @@ CrossBorder Nexus is an independent portfolio integration project. The repositor
 | [shadcn/ui](https://ui.shadcn.com/examples/dashboard) | MIT | Dashboard hierarchy, metric cards and spacing | Visual reference only; no component source copied |
 | [Langfuse](https://github.com/langfuse/langfuse) | MIT core with additional enterprise licensing | Trace, latency, token and tool-call presentation | Product-pattern reference only |
 | [assistant-ui](https://github.com/assistant-ui/assistant-ui) | MIT | Chat, tool result and human-approval interaction patterns | Product-pattern reference only |
+| [Readme Typing SVG](https://github.com/DenverCoder1/readme-typing-svg) | MIT | Animated typing header for the repository landing page | Referenced as an externally generated SVG image; no source file copied |
 
 ## Deliberately excluded code
 
