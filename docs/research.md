@@ -1,6 +1,6 @@
 # Research record
 
-Research date: 2026-08-27
+Research dates: 2026-08-27 to 2026-08-28
 
 ## Official platform constraints
 
@@ -16,6 +16,16 @@ Research date: 2026-08-27
 - fastapi-langgraph-ai-agent: compact package-by-feature structure and checkpoint/HITL patterns.
 - Ragas: RAG faithfulness and context-quality terminology.
 - langgraph-production: score tool arguments separately from tool names and test recovery at interruption boundaries.
+
+## Product presentation and interface references
+
+- GitHub README guidance: lead with what the project does, why it is useful, how to start, and use relative links for repository assets.
+- Dify: a branded hero, concise positioning, a real product preview, and capability-led navigation make the README understandable before setup details.
+- shadcn/ui dashboard: compact metric cards, clear trend semantics, restrained borders, and consistent spacing create a strong operational hierarchy.
+- Langfuse: request traces become easier to inspect when steps, latency, tool calls, tokens, and evidence are visible in one task context.
+- assistant-ui: chat, tool execution, and human approval should appear as parts of one continuous task rather than separate technical screens.
+
+These references informed the information architecture and visual hierarchy only. The workbench HTML, CSS, SVG mark, and interactions were implemented independently in this repository.
 
 ## Evidence boundaries
 

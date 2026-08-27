@@ -1,16 +1,33 @@
-# CrossBorder Nexus
+<div align="center">
+  <img src="docs/assets/nexus-mark.svg" width="82" alt="CrossBorder Nexus 标志" />
+  <h1>CrossBorder Nexus</h1>
+  <p><strong>跨境电商多智能体运营平台</strong></p>
+  <p>让运营分析、客户服务、企业知识与高风险决策在同一条 Agent 链路中协作。</p>
 
-### 跨境电商多智能体运营平台
+  <p>
+    <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.11%2B-3776AB?logo=python&amp;logoColor=white" alt="Python 3.11+" /></a>
+    <a href="https://fastapi.tiangolo.com/"><img src="https://img.shields.io/badge/FastAPI-0.115%2B-009688?logo=fastapi&amp;logoColor=white" alt="FastAPI" /></a>
+    <a href="https://langchain-ai.github.io/langgraph/"><img src="https://img.shields.io/badge/Orchestration-LangGraph-6C5CE7" alt="LangGraph" /></a>
+    <a href="https://github.com/Mc442578/crossborder-nexus/actions/workflows/quality.yml"><img src="https://github.com/Mc442578/crossborder-nexus/actions/workflows/quality.yml/badge.svg" alt="Quality" /></a>
+    <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-45B98F.svg" alt="MIT License" /></a>
+  </p>
 
-[![Python 3.11+](https://img.shields.io/badge/Python-3.11%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.115%2B-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
-[![LangGraph](https://img.shields.io/badge/Orchestration-LangGraph-1C3C3C)](https://langchain-ai.github.io/langgraph/)
-[![Quality](https://github.com/Mc442578/crossborder-nexus/actions/workflows/quality.yml/badge.svg)](https://github.com/Mc442578/crossborder-nexus/actions/workflows/quality.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+  <p>
+    <a href="#核心能力">核心能力</a> ·
+    <a href="#一次请求如何执行">执行架构</a> ·
+    <a href="#可复现评测">评测体系</a> ·
+    <a href="#本地查看">本地查看</a> ·
+    <a href="docs/architecture.md">设计文档</a>
+  </p>
+</div>
 
-面向跨境电商运营团队的多 Agent 工作台。系统将商品、订单、库存、客户反馈、客服与企业知识库统一为可编排的业务能力，由 Supervisor 完成任务路由，专业 Agent 调用类型化工具执行，并通过记忆、人工确认、可恢复任务和分层评测形成完整闭环。
+![CrossBorder Nexus AI 运营指挥中心](docs/assets/workbench-preview.png)
 
-![CrossBorder Nexus 运营工作台预览](docs/assets/workbench-preview.png)
+CrossBorder Nexus 面向跨境电商运营与客户服务团队，将商品、订单、库存、客户反馈和企业知识统一成可编排的业务能力。Supervisor 负责理解目标和安排执行，专业 Agent 通过类型化工具访问业务数据，最终以可追踪证据、人工确认和可复现评测闭合任务。
+
+| 从业务问题到决策 | 从生成答案到可信证据 | 从自动执行到安全边界 |
+| --- | --- | --- |
+| 一个请求可同时调度运营、客服、知识库与评论分析 Agent | 每次回答保留工具轨迹、知识来源、耗时与质量信号 | 退款、赔付和发送消息等副作用进入人工确认，不由模型直接执行 |
 
 ## 核心能力
 

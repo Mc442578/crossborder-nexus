@@ -12,6 +12,10 @@ CrossBorder Nexus is an independent portfolio integration project. The repositor
 | [fastapi-langgraph-ai-agent](https://github.com/paulmorphic/fastapi-langgraph-ai-agent) | MIT | Small FastAPI + LangGraph e-commerce structure, checkpoint and HITL patterns | Design reference only |
 | [Ragas](https://github.com/vibrantlabsai/ragas) | Apache-2.0 | RAG evaluation terminology and metrics | Used as a declared Python dependency when enabled |
 | [langgraph-production](https://github.com/vinimabreu/langgraph-production) | See upstream repository | Routing, tool-argument and recovery evaluation ideas | Evaluation design reference only |
+| [Dify](https://github.com/langgenius/dify) | Apache-2.0 with additional conditions for some use cases | Product-first README structure and AI workflow presentation | Visual and information-architecture reference only |
+| [shadcn/ui](https://ui.shadcn.com/examples/dashboard) | MIT | Dashboard hierarchy, metric cards and spacing | Visual reference only; no component source copied |
+| [Langfuse](https://github.com/langfuse/langfuse) | MIT core with additional enterprise licensing | Trace, latency, token and tool-call presentation | Product-pattern reference only |
+| [assistant-ui](https://github.com/assistant-ui/assistant-ui) | MIT | Chat, tool result and human-approval interaction patterns | Product-pattern reference only |
 
 ## Deliberately excluded code
 
