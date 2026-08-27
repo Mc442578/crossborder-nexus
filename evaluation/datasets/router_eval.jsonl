@@ -1,0 +1,100 @@
+{"id":"ROUTE-001","query":"查询商品价格，样例批次1","expected_agents":["operations"],"execution_mode":"serial"}
+{"id":"ROUTE-002","query":"检查库存，样例批次1","expected_agents":["operations"],"execution_mode":"serial"}
+{"id":"ROUTE-003","query":"查看订单数据，样例批次1","expected_agents":["operations"],"execution_mode":"serial"}
+{"id":"ROUTE-004","query":"product inventory report，样例批次1","expected_agents":["operations"],"execution_mode":"serial"}
+{"id":"ROUTE-005","query":"查询商品价格，样例批次2","expected_agents":["operations"],"execution_mode":"serial"}
+{"id":"ROUTE-006","query":"检查库存，样例批次2","expected_agents":["operations"],"execution_mode":"serial"}
+{"id":"ROUTE-007","query":"查看订单数据，样例批次2","expected_agents":["operations"],"execution_mode":"serial"}
+{"id":"ROUTE-008","query":"product inventory report，样例批次2","expected_agents":["operations"],"execution_mode":"serial"}
+{"id":"ROUTE-009","query":"查询商品价格，样例批次3","expected_agents":["operations"],"execution_mode":"serial"}
+{"id":"ROUTE-010","query":"检查库存，样例批次3","expected_agents":["operations"],"execution_mode":"serial"}
+{"id":"ROUTE-011","query":"查看订单数据，样例批次3","expected_agents":["operations"],"execution_mode":"serial"}
+{"id":"ROUTE-012","query":"product inventory report，样例批次3","expected_agents":["operations"],"execution_mode":"serial"}
+{"id":"ROUTE-013","query":"查询商品价格，样例批次4","expected_agents":["operations"],"execution_mode":"serial"}
+{"id":"ROUTE-014","query":"检查库存，样例批次4","expected_agents":["operations"],"execution_mode":"serial"}
+{"id":"ROUTE-015","query":"查看订单数据，样例批次4","expected_agents":["operations"],"execution_mode":"serial"}
+{"id":"ROUTE-016","query":"product inventory report，样例批次4","expected_agents":["operations"],"execution_mode":"serial"}
+{"id":"ROUTE-017","query":"查询商品价格，样例批次5","expected_agents":["operations"],"execution_mode":"serial"}
+{"id":"ROUTE-018","query":"检查库存，样例批次5","expected_agents":["operations"],"execution_mode":"serial"}
+{"id":"ROUTE-019","query":"查看订单数据，样例批次5","expected_agents":["operations"],"execution_mode":"serial"}
+{"id":"ROUTE-020","query":"product inventory report，样例批次5","expected_agents":["operations"],"execution_mode":"serial"}
+{"id":"ROUTE-021","query":"查询商品价格，样例批次6","expected_agents":["operations"],"execution_mode":"serial"}
+{"id":"ROUTE-022","query":"检查库存，样例批次6","expected_agents":["operations"],"execution_mode":"serial"}
+{"id":"ROUTE-023","query":"查看订单数据，样例批次6","expected_agents":["operations"],"execution_mode":"serial"}
+{"id":"ROUTE-024","query":"product inventory report，样例批次6","expected_agents":["operations"],"execution_mode":"serial"}
+{"id":"ROUTE-025","query":"查询物流，样例批次1","expected_agents":["customer_service"],"execution_mode":"serial"}
+{"id":"ROUTE-026","query":"客户要求退款，样例批次1","expected_agents":["customer_service"],"execution_mode":"serial"}
+{"id":"ROUTE-027","query":"处理售后，样例批次1","expected_agents":["customer_service"],"execution_mode":"serial"}
+{"id":"ROUTE-028","query":"buyer track order，样例批次1","expected_agents":["customer_service"],"execution_mode":"serial"}
+{"id":"ROUTE-029","query":"查询物流，样例批次2","expected_agents":["customer_service"],"execution_mode":"serial"}
+{"id":"ROUTE-030","query":"客户要求退款，样例批次2","expected_agents":["customer_service"],"execution_mode":"serial"}
+{"id":"ROUTE-031","query":"处理售后，样例批次2","expected_agents":["customer_service"],"execution_mode":"serial"}
+{"id":"ROUTE-032","query":"buyer track order，样例批次2","expected_agents":["customer_service"],"execution_mode":"serial"}
+{"id":"ROUTE-033","query":"查询物流，样例批次3","expected_agents":["customer_service"],"execution_mode":"serial"}
+{"id":"ROUTE-034","query":"客户要求退款，样例批次3","expected_agents":["customer_service"],"execution_mode":"serial"}
+{"id":"ROUTE-035","query":"处理售后，样例批次3","expected_agents":["customer_service"],"execution_mode":"serial"}
+{"id":"ROUTE-036","query":"buyer track order，样例批次3","expected_agents":["customer_service"],"execution_mode":"serial"}
+{"id":"ROUTE-037","query":"查询物流，样例批次4","expected_agents":["customer_service"],"execution_mode":"serial"}
+{"id":"ROUTE-038","query":"客户要求退款，样例批次4","expected_agents":["customer_service"],"execution_mode":"serial"}
+{"id":"ROUTE-039","query":"处理售后，样例批次4","expected_agents":["customer_service"],"execution_mode":"serial"}
+{"id":"ROUTE-040","query":"buyer track order，样例批次4","expected_agents":["customer_service"],"execution_mode":"serial"}
+{"id":"ROUTE-041","query":"查询物流，样例批次5","expected_agents":["customer_service"],"execution_mode":"serial"}
+{"id":"ROUTE-042","query":"客户要求退款，样例批次5","expected_agents":["customer_service"],"execution_mode":"serial"}
+{"id":"ROUTE-043","query":"处理售后，样例批次5","expected_agents":["customer_service"],"execution_mode":"serial"}
+{"id":"ROUTE-044","query":"buyer track order，样例批次5","expected_agents":["customer_service"],"execution_mode":"serial"}
+{"id":"ROUTE-045","query":"查询物流，样例批次6","expected_agents":["customer_service"],"execution_mode":"serial"}
+{"id":"ROUTE-046","query":"客户要求退款，样例批次6","expected_agents":["customer_service"],"execution_mode":"serial"}
+{"id":"ROUTE-047","query":"处理售后，样例批次6","expected_agents":["customer_service"],"execution_mode":"serial"}
+{"id":"ROUTE-048","query":"buyer track order，样例批次6","expected_agents":["customer_service"],"execution_mode":"serial"}
+{"id":"ROUTE-049","query":"查询平台规则，样例批次1","expected_agents":["knowledge_base"],"execution_mode":"serial"}
+{"id":"ROUTE-050","query":"检索政策文档，样例批次1","expected_agents":["knowledge_base"],"execution_mode":"serial"}
+{"id":"ROUTE-051","query":"knowledge policy question，样例批次1","expected_agents":["knowledge_base"],"execution_mode":"serial"}
+{"id":"ROUTE-052","query":"规则是什么，样例批次1","expected_agents":["knowledge_base"],"execution_mode":"serial"}
+{"id":"ROUTE-053","query":"查询平台规则，样例批次2","expected_agents":["knowledge_base"],"execution_mode":"serial"}
+{"id":"ROUTE-054","query":"检索政策文档，样例批次2","expected_agents":["knowledge_base"],"execution_mode":"serial"}
+{"id":"ROUTE-055","query":"knowledge policy question，样例批次2","expected_agents":["knowledge_base"],"execution_mode":"serial"}
+{"id":"ROUTE-056","query":"规则是什么，样例批次2","expected_agents":["knowledge_base"],"execution_mode":"serial"}
+{"id":"ROUTE-057","query":"查询平台规则，样例批次3","expected_agents":["knowledge_base"],"execution_mode":"serial"}
+{"id":"ROUTE-058","query":"检索政策文档，样例批次3","expected_agents":["knowledge_base"],"execution_mode":"serial"}
+{"id":"ROUTE-059","query":"knowledge policy question，样例批次3","expected_agents":["knowledge_base"],"execution_mode":"serial"}
+{"id":"ROUTE-060","query":"规则是什么，样例批次3","expected_agents":["knowledge_base"],"execution_mode":"serial"}
+{"id":"ROUTE-061","query":"查询平台规则，样例批次4","expected_agents":["knowledge_base"],"execution_mode":"serial"}
+{"id":"ROUTE-062","query":"检索政策文档，样例批次4","expected_agents":["knowledge_base"],"execution_mode":"serial"}
+{"id":"ROUTE-063","query":"knowledge policy question，样例批次4","expected_agents":["knowledge_base"],"execution_mode":"serial"}
+{"id":"ROUTE-064","query":"规则是什么，样例批次4","expected_agents":["knowledge_base"],"execution_mode":"serial"}
+{"id":"ROUTE-065","query":"查询平台规则，样例批次5","expected_agents":["knowledge_base"],"execution_mode":"serial"}
+{"id":"ROUTE-066","query":"检索政策文档，样例批次5","expected_agents":["knowledge_base"],"execution_mode":"serial"}
+{"id":"ROUTE-067","query":"knowledge policy question，样例批次5","expected_agents":["knowledge_base"],"execution_mode":"serial"}
+{"id":"ROUTE-068","query":"规则是什么，样例批次5","expected_agents":["knowledge_base"],"execution_mode":"serial"}
+{"id":"ROUTE-069","query":"查询平台规则，样例批次6","expected_agents":["knowledge_base"],"execution_mode":"serial"}
+{"id":"ROUTE-070","query":"检索政策文档，样例批次6","expected_agents":["knowledge_base"],"execution_mode":"serial"}
+{"id":"ROUTE-071","query":"knowledge policy question，样例批次6","expected_agents":["knowledge_base"],"execution_mode":"serial"}
+{"id":"ROUTE-072","query":"规则是什么，样例批次6","expected_agents":["knowledge_base"],"execution_mode":"serial"}
+{"id":"ROUTE-073","query":"分析商品评论，样例批次1","expected_agents":["review_analysis"],"execution_mode":"serial"}
+{"id":"ROUTE-074","query":"找出差评原因，样例批次1","expected_agents":["review_analysis"],"execution_mode":"serial"}
+{"id":"ROUTE-075","query":"review sentiment，样例批次1","expected_agents":["review_analysis"],"execution_mode":"serial"}
+{"id":"ROUTE-076","query":"客户反馈分析，样例批次1","expected_agents":["review_analysis"],"execution_mode":"serial"}
+{"id":"ROUTE-077","query":"分析商品评论，样例批次2","expected_agents":["review_analysis"],"execution_mode":"serial"}
+{"id":"ROUTE-078","query":"找出差评原因，样例批次2","expected_agents":["review_analysis"],"execution_mode":"serial"}
+{"id":"ROUTE-079","query":"review sentiment，样例批次2","expected_agents":["review_analysis"],"execution_mode":"serial"}
+{"id":"ROUTE-080","query":"客户反馈分析，样例批次2","expected_agents":["review_analysis"],"execution_mode":"serial"}
+{"id":"ROUTE-081","query":"分析商品评论，样例批次3","expected_agents":["review_analysis"],"execution_mode":"serial"}
+{"id":"ROUTE-082","query":"找出差评原因，样例批次3","expected_agents":["review_analysis"],"execution_mode":"serial"}
+{"id":"ROUTE-083","query":"review sentiment，样例批次3","expected_agents":["review_analysis"],"execution_mode":"serial"}
+{"id":"ROUTE-084","query":"客户反馈分析，样例批次3","expected_agents":["review_analysis"],"execution_mode":"serial"}
+{"id":"ROUTE-085","query":"分析商品评论，样例批次4","expected_agents":["review_analysis"],"execution_mode":"serial"}
+{"id":"ROUTE-086","query":"找出差评原因，样例批次4","expected_agents":["review_analysis"],"execution_mode":"serial"}
+{"id":"ROUTE-087","query":"review sentiment，样例批次4","expected_agents":["review_analysis"],"execution_mode":"serial"}
+{"id":"ROUTE-088","query":"客户反馈分析，样例批次4","expected_agents":["review_analysis"],"execution_mode":"serial"}
+{"id":"ROUTE-089","query":"分析商品评论，样例批次5","expected_agents":["review_analysis"],"execution_mode":"serial"}
+{"id":"ROUTE-090","query":"找出差评原因，样例批次5","expected_agents":["review_analysis"],"execution_mode":"serial"}
+{"id":"ROUTE-091","query":"review sentiment，样例批次5","expected_agents":["review_analysis"],"execution_mode":"serial"}
+{"id":"ROUTE-092","query":"客户反馈分析，样例批次5","expected_agents":["review_analysis"],"execution_mode":"serial"}
+{"id":"ROUTE-093","query":"分析商品评论，样例批次6","expected_agents":["review_analysis"],"execution_mode":"serial"}
+{"id":"ROUTE-094","query":"找出差评原因，样例批次6","expected_agents":["review_analysis"],"execution_mode":"serial"}
+{"id":"ROUTE-095","query":"review sentiment，样例批次6","expected_agents":["review_analysis"],"execution_mode":"serial"}
+{"id":"ROUTE-096","query":"客户反馈分析，样例批次6","expected_agents":["review_analysis"],"execution_mode":"serial"}
+{"id":"ROUTE-097","query":"检查库存并分析评论","expected_agents":["operations","review_analysis"],"execution_mode":"parallel"}
+{"id":"ROUTE-098","query":"查询物流并核对平台规则","expected_agents":["customer_service","knowledge_base"],"execution_mode":"parallel"}
+{"id":"ROUTE-099","query":"product inventory and review sentiment","expected_agents":["operations","review_analysis"],"execution_mode":"parallel"}
+{"id":"ROUTE-100","query":"buyer refund and policy","expected_agents":["customer_service","knowledge_base"],"execution_mode":"parallel"}

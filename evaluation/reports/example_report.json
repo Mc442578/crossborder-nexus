@@ -1,0 +1,24 @@
+{
+  "result_status": "illustrative",
+  "warning": "This file demonstrates the report schema and is not a measured project result.",
+  "router": {
+    "dataset_size": 100,
+    "exact_route_accuracy": null,
+    "primary_route_macro_f1": null
+  },
+  "tools": {
+    "dataset_size": 20,
+    "tool_name_accuracy": null,
+    "tool_argument_accuracy": null
+  },
+  "rag": {
+    "dataset_size": 20,
+    "ragas_faithfulness": null,
+    "ragas_context_precision": null
+  },
+  "recovery": {
+    "dataset_size": 16,
+    "recovery_pass_rate": null,
+    "duplicate_side_effects": null
+  }
+}

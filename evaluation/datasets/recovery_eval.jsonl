@@ -1,0 +1,16 @@
+{"id":"REC-001","request_id":"request-001","payload":"send-message-1","failures_before_success":1,"max_attempts":3,"expected_status":"success"}
+{"id":"REC-002","request_id":"request-002","payload":"send-message-2","failures_before_success":2,"max_attempts":3,"expected_status":"success"}
+{"id":"REC-003","request_id":"request-003","payload":"send-message-3","failures_before_success":0,"max_attempts":3,"expected_status":"success"}
+{"id":"REC-004","request_id":"request-004","payload":"send-message-4","failures_before_success":1,"max_attempts":3,"expected_status":"success"}
+{"id":"REC-005","request_id":"request-005","payload":"send-message-5","failures_before_success":2,"max_attempts":3,"expected_status":"success"}
+{"id":"REC-006","request_id":"request-006","payload":"send-message-6","failures_before_success":0,"max_attempts":3,"expected_status":"success"}
+{"id":"REC-007","request_id":"request-007","payload":"send-message-7","failures_before_success":1,"max_attempts":3,"expected_status":"success"}
+{"id":"REC-008","request_id":"request-008","payload":"send-message-8","failures_before_success":2,"max_attempts":3,"expected_status":"success"}
+{"id":"REC-009","request_id":"request-009","payload":"send-message-9","failures_before_success":0,"max_attempts":3,"expected_status":"success"}
+{"id":"REC-010","request_id":"request-010","payload":"send-message-10","failures_before_success":1,"max_attempts":3,"expected_status":"success"}
+{"id":"REC-011","request_id":"request-011","payload":"send-message-11","failures_before_success":2,"max_attempts":3,"expected_status":"success"}
+{"id":"REC-012","request_id":"request-012","payload":"send-message-12","failures_before_success":0,"max_attempts":3,"expected_status":"success"}
+{"id":"REC-013","request_id":"request-013","payload":"send-message-13","failures_before_success":1,"max_attempts":3,"expected_status":"success"}
+{"id":"REC-014","request_id":"request-014","payload":"send-message-14","failures_before_success":2,"max_attempts":3,"expected_status":"success"}
+{"id":"REC-015","request_id":"request-015","payload":"send-message-15","failures_before_success":0,"max_attempts":3,"expected_status":"success"}
+{"id":"REC-016","request_id":"request-016","payload":"send-message-16","failures_before_success":1,"max_attempts":3,"expected_status":"success"}

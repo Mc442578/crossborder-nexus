@@ -1,0 +1,4 @@
+[
+  {"sku": "CB-POD-BLUE", "fulfillable": 43, "inbound": 20, "reserved": 7, "unfulfillable": 2},
+  {"sku": "CB-CASE-RED", "fulfillable": 8, "inbound": 0, "reserved": 3, "unfulfillable": 0}
+]

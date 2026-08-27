@@ -1,0 +1,18 @@
+[
+  {
+    "asin": "B0CBVAPE001",
+    "topic": "battery life",
+    "sentiment": "negative",
+    "mentions": 37,
+    "star_impact": -0.42,
+    "sample_snippets": ["Battery drains faster than expected", "Needs charging during the day"]
+  },
+  {
+    "asin": "B0CBVAPE001",
+    "topic": "compact design",
+    "sentiment": "positive",
+    "mentions": 61,
+    "star_impact": 0.31,
+    "sample_snippets": ["Easy to carry", "Compact and simple to use"]
+  }
+]

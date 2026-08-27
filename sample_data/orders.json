@@ -1,0 +1,18 @@
+[
+  {
+    "order_id": "ORDER-DEMO-1001",
+    "status": "Shipped",
+    "purchase_date": "2026-08-20T10:30:00Z",
+    "destination_country": "GB",
+    "tracking_number": "TRACK-DEMO-7788",
+    "items": [{"sku": "CB-POD-BLUE", "quantity": 1}]
+  },
+  {
+    "order_id": "ORDER-DEMO-1002",
+    "status": "Pending",
+    "purchase_date": "2026-08-26T09:00:00Z",
+    "destination_country": "DE",
+    "tracking_number": null,
+    "items": [{"sku": "CB-CASE-RED", "quantity": 2}]
+  }
+]
