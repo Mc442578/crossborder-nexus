@@ -3,46 +3,79 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CrossBorder Nexus Workbench</title>
+    <meta name="theme-color" content="#08111f" />
+    <title>CrossBorder Nexus · AI Operations Command Center</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <aside>
-      <div class="brand"><span>CB</span> CrossBorder Nexus</div>
-      <nav>
-        <a class="active">智能运营</a><a>客户会话</a><a>知识库</a><a>商品洞察</a><a>Agent运行</a><a>评测中心</a>
-      </nav>
-      <div class="demo">Portfolio Demo<br /><small>Mock Amazon data</small></div>
-    </aside>
-    <main>
-      <header><div><p class="eyebrow">OPERATIONS WORKBENCH</p><h1>跨境电商多智能体运营平台</h1></div><button>新建分析任务</button></header>
-      <section class="metrics">
-        <article><span>今日Agent任务</span><strong>128</strong><small class="up">+12.4%</small></article>
-        <article><span>工具调用成功率</span><strong>—</strong><small>等待真实评测</small></article>
-        <article><span>待人工处理</span><strong>7</strong><small class="warn">2项高优先级</small></article>
-        <article><span>知识库文档</span><strong>42</strong><small>3个知识空间</small></article>
-      </section>
-      <section class="grid">
-        <article class="panel conversation">
-          <div class="panel-title"><div><span class="dot"></span> Supervisor任务</div><small>TRACE-DEMO-0827</small></div>
-          <div class="message user">分析 B0CBVAPE001 最近的客户负面反馈，并检查当前库存是否需要调整。</div>
-          <div class="route">
-            <div><b>Supervisor</b><span>识别为复合任务 · 并行调度</span></div>
-            <div class="chips"><i>运营Agent</i><i>评论分析Agent</i></div>
-          </div>
-          <div class="message agent"><b>综合结论</b><p>主要负向反馈集中在“battery life”，共37次提及；当前可售库存43件。建议先核验产品批次与详情页续航承诺，再决定补货节奏。</p><div class="source">工具：get_feedback_topics · get_inventory · Mock数据</div></div>
-          <div class="composer">输入运营问题…<button>发送</button></div>
-        </article>
-        <div class="stack">
-          <article class="panel"><div class="panel-title"><div>Agent执行轨迹</div><small>并行</small></div>
-            <ol class="timeline"><li class="done"><b>Supervisor路由</b><span>14 ms</span></li><li class="done"><b>运营Agent · get_inventory</b><span>8 ms</span></li><li class="done"><b>评论Agent · get_feedback_topics</b><span>11 ms</span></li><li class="done"><b>结果聚合</b><span>6 ms</span></li></ol>
-          </article>
-          <article class="panel"><div class="panel-title"><div>证据与边界</div><small>2条</small></div>
-            <div class="evidence"><b>客户反馈主题</b><p>Customer Feedback Mock · battery life · 37 mentions</p></div>
-            <div class="evidence"><b>平台消息规则</b><p>订单可用操作检查后，才允许进入人工确认。</p></div>
-          </article>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <a class="brand" href="#" aria-label="CrossBorder Nexus 首页">
+          <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span><strong>CrossBorder</strong><small>NEXUS</small></span>
+        </a>
+        <div class="workspace-switcher">
+          <span class="market-flag">US</span>
+          <span><small>Workspace</small><strong>North America</strong></span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4" /></svg>
         </div>
-      </section>
-    </main>
+        <nav aria-label="主导航">
+          <p>COMMAND CENTER</p>
+          <a class="active" href="#overview" data-view="overview"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg>运营总览</a>
+          <a href="#missions" data-view="missions"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3M4.9 4.9 7 7m10 10 2.1 2.1M19.1 4.9 17 7M7 17l-2.1 2.1"/></svg>Agent 任务<em>12</em></a>
+          <a href="#customers" data-view="customers"><svg viewBox="0 0 24 24"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4Z"/><path d="M8 9h8M8 13h5"/></svg>客户会话<span class="nav-alert"></span></a>
+          <a href="#insights" data-view="insights"><svg viewBox="0 0 24 24"><path d="M4 19V9m6 10V5m6 14v-7m4 7H2"/><path d="m4 8 6-4 6 7 4-3"/></svg>商品洞察</a>
+          <p>INTELLIGENCE</p>
+          <a href="#knowledge" data-view="knowledge"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H11v17H6.5A2.5 2.5 0 0 0 4 22Z"/><path d="M20 5.5A2.5 2.5 0 0 0 17.5 3H13v17h4.5A2.5 2.5 0 0 1 20 22Z"/></svg>运营知识库</a>
+          <a href="#evaluation" data-view="evaluation"><svg viewBox="0 0 24 24"><path d="M4 19V5m0 14h16"/><path d="m7 15 4-4 3 2 5-7"/></svg>质量与评测</a>
+          <a href="#traces" data-view="traces"><svg viewBox="0 0 24 24"><path d="M4 6h5m6 0h5M9 6a3 3 0 1 0 6 0 3 3 0 0 0-6 0ZM4 18h5m6 0h5M9 18a3 3 0 1 0 6 0 3 3 0 0 0-6 0Z"/></svg>调用链路</a>
+        </nav>
+        <div class="sidebar-footer">
+          <div class="system-status"><span></span><div><strong>All systems ready</strong><small>Sample workspace</small></div></div>
+          <button class="user-card" type="button"><span class="avatar">MC</span><span><strong>Morning Chen</strong><small>Operations admin</small></span><svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></svg></button>
+        </div>
+      </aside>
+      <main>
+        <header class="topbar">
+          <div class="breadcrumbs"><span>Command Center</span><b>/</b><strong>Overview</strong></div>
+          <div class="top-actions">
+            <button class="search" type="button" aria-label="搜索"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><span>Search anything</span><kbd>⌘ K</kbd></button>
+            <button class="icon-button" type="button" aria-label="通知"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg><span></span></button>
+            <button class="primary-action" type="button" id="newMission"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>新建任务</button>
+          </div>
+        </header>
+        <div class="canvas">
+          <section class="page-heading">
+            <div><div class="heading-kicker"><span></span>AI OPERATIONS COMMAND CENTER</div><h1>早上好，运营团队 <i>✦</i></h1><p>跨市场业务信号、Agent 执行与人工决策，在一个工作台完成闭环。</p></div>
+            <div class="period-switch" role="group" aria-label="时间范围"><button type="button" data-period="7">7 days</button><button class="active" type="button" data-period="30">30 days</button><button type="button" data-period="90">90 days</button></div>
+          </section>
+          <section class="metric-grid" aria-label="核心指标">
+            <article class="metric-card accent-violet"><div class="metric-top"><span class="metric-icon"><svg viewBox="0 0 24 24"><path d="m12 3 1.7 4.8L18.5 9l-4.8 1.7L12 15.5l-1.7-4.8L5.5 9l4.8-1.2Z"/><path d="m19 15 .8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8Z"/></svg></span><small>Agent missions</small><button>•••</button></div><div class="metric-value"><strong>1,284</strong><span class="trend up">↗ 12.4%</span></div><div class="sparkline purple"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><p>142 missions completed today</p></article>
+            <article class="metric-card accent-cyan"><div class="metric-top"><span class="metric-icon"><svg viewBox="0 0 24 24"><path d="M20 7 10 17l-5-5"/><circle cx="12" cy="12" r="9"/></svg></span><small>Tool success</small><button>•••</button></div><div class="metric-value"><strong>98.6%</strong><span class="trend up">↗ 1.8%</span></div><div class="progress"><span style="width:98.6%"></span></div><p>Across 3,812 typed tool calls</p></article>
+            <article class="metric-card accent-amber"><div class="metric-top"><span class="metric-icon"><svg viewBox="0 0 24 24"><path d="M12 9v4m0 4h.01"/><path d="M10.3 3.7 2.5 17.2A2 2 0 0 0 4.2 20h15.6a2 2 0 0 0 1.7-2.8L13.7 3.7a2 2 0 0 0-3.4 0Z"/></svg></span><small>Needs attention</small><button>•••</button></div><div class="metric-value"><strong>07</strong><span class="trend warn">2 urgent</span></div><div class="review-avatars"><span>MC</span><span>AL</span><span>+3</span><em>Human review queue</em></div><p>All high-risk actions remain gated</p></article>
+            <article class="metric-card accent-emerald"><div class="metric-top"><span class="metric-icon"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H11v17H6.5A2.5 2.5 0 0 0 4 22Z"/><path d="M20 5.5A2.5 2.5 0 0 0 17.5 3H13v17h4.5A2.5 2.5 0 0 1 20 22Z"/></svg></span><small>Knowledge coverage</small><button>•••</button></div><div class="metric-value"><strong>92.4%</strong><span class="trend up">↗ 4.1%</span></div><div class="coverage"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><i></i></div><p>86 documents · 3 knowledge spaces</p></article>
+          </section>
+          <section class="command-grid">
+            <article class="panel mission-panel">
+              <div class="panel-heading"><div><span class="panel-icon violet"><svg viewBox="0 0 24 24"><path d="m12 3 1.7 4.8L18.5 9l-4.8 1.7L12 15.5l-1.7-4.8L5.5 9l4.8-1.2Z"/></svg></span><span><strong>Mission control</strong><small>Supervisor · live orchestration</small></span></div><div class="live-pill"><i></i>Running</div></div>
+              <div class="mission-query"><span class="query-avatar">OP</span><div><small>OPERATIONS REQUEST</small><p>分析 ASIN <b>B0CBVAPE001</b> 最近的负面反馈，并判断当前库存是否需要调整。</p></div><button type="button" aria-label="复制任务"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button></div>
+              <div class="agent-flow" aria-label="Agent 路由"><div class="agent-node supervisor"><span><svg viewBox="0 0 24 24"><path d="M12 2v4m0 12v4M4.9 4.9l2.8 2.8m8.6 8.6 2.8 2.8M2 12h4m12 0h4M4.9 19.1l2.8-2.8m8.6-8.6 2.8-2.8"/><circle cx="12" cy="12" r="4"/></svg></span><div><small>ROUTER</small><strong>Supervisor</strong></div><em>12ms</em></div><span class="flow-line"><i></i></span><div class="parallel-nodes"><div class="agent-node"><span class="blue"><svg viewBox="0 0 24 24"><path d="M3 3v18h18M7 16l4-5 3 2 5-7"/></svg></span><div><small>PARALLEL 01</small><strong>Operations Agent</strong></div><em>28ms</em></div><div class="agent-node"><span class="pink"><svg viewBox="0 0 24 24"><path d="M4 19h16M5 16l3-3 3 2 5-7 3 2"/><circle cx="8" cy="13" r="1"/><circle cx="16" cy="8" r="1"/></svg></span><div><small>PARALLEL 02</small><strong>Feedback Agent</strong></div><em>41ms</em></div></div></div>
+              <div class="finding-card"><div class="finding-head"><span><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></span><div><small>SYNTHESIZED DECISION</small><strong>优先核验产品承诺，再调整补货节奏</strong></div><em>High confidence</em></div><p>负向反馈主要集中在 <mark>续航表现</mark>，近 30 天共 37 次提及；当前可售库存 43 件，预计覆盖 8 天。建议先核验批次与详情页续航承诺，并将下一补货批次下调 15%。</p><div class="finding-sources"><span><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg>3 sources grounded</span><span>get_inventory</span><span>get_feedback_topics</span><button type="button">View trace →</button></div></div>
+            </article>
+            <aside class="right-rail">
+              <article class="panel risk-panel"><div class="panel-heading compact"><div><span class="panel-icon amber"><svg viewBox="0 0 24 24"><path d="M12 9v4m0 4h.01"/><path d="M10.3 3.7 2.5 17.2A2 2 0 0 0 4.2 20h15.6a2 2 0 0 0 1.7-2.8L13.7 3.7a2 2 0 0 0-3.4 0Z"/></svg></span><span><strong>Risk radar</strong><small>Signals requiring attention</small></span></div><button>View all</button></div><div class="risk-item critical"><div class="risk-score"><b>82</b><small>HIGH</small></div><div><strong>Stockout risk · US marketplace</strong><p>CB-POD-BLUE may run out in 8 days.</p><span>Inventory Agent · 2 min ago</span></div><button aria-label="打开风险">↗</button></div><div class="risk-item medium"><div class="risk-score"><b>64</b><small>MED</small></div><div><strong>Negative feedback emerging</strong><p>“Battery life” mentions increased 31%.</p><span>Feedback Agent · 14 min ago</span></div><button aria-label="打开风险">↗</button></div><div class="risk-item low"><div class="risk-score"><b>38</b><small>LOW</small></div><div><strong>Policy document updated</strong><p>Buyer Messaging policy has a new revision.</p><span>Knowledge Agent · 1 h ago</span></div><button aria-label="打开风险">↗</button></div></article>
+              <article class="panel decision-panel"><div class="panel-heading compact"><div><span class="panel-icon emerald"><svg viewBox="0 0 24 24"><path d="M20 7 10 17l-5-5"/></svg></span><span><strong>Human review</strong><small>Safe action boundary</small></span></div><span class="count-pill">2</span></div><div class="approval-card"><div><span class="approval-icon">$</span><div><small>REFUND REQUEST</small><strong>ORDER-DEMO-1001</strong></div><em>$24.90</em></div><p>Customer reports delayed delivery. Agent prepared a policy-grounded resolution.</p><div><button class="ghost-action" type="button">Inspect</button><button class="approve-action" type="button">Approve</button></div></div></article>
+            </aside>
+          </section>
+          <section class="bottom-grid">
+            <article class="panel trace-panel"><div class="panel-heading compact"><div><span class="panel-icon cyan"><svg viewBox="0 0 24 24"><path d="M4 6h5m6 0h5M9 6a3 3 0 1 0 6 0 3 3 0 0 0-6 0ZM4 18h5m6 0h5M9 18a3 3 0 1 0 6 0 3 3 0 0 0-6 0Z"/></svg></span><span><strong>Execution trace</strong><small>TRACE-CBN-0828-1284</small></span></div><button>Open details</button></div><div class="trace-summary"><span><small>Latency</small><b>1.24s</b></span><span><small>Tool calls</small><b>4</b></span><span><small>Tokens</small><b>1,842</b></span><span><small>Est. cost</small><b>$0.014</b></span></div><ol class="trace-list"><li><i class="done"></i><div><strong>Supervisor route</strong><small>intent · plan · parallel dispatch</small></div><span>12ms</span></li><li><i class="done"></i><div><strong>get_inventory</strong><small>sku=CB-POD-BLUE · marketplace=US</small></div><span>28ms</span></li><li><i class="done"></i><div><strong>get_feedback_topics</strong><small>asin=B0CBVAPE001 · window=30d</small></div><span>41ms</span></li><li><i class="pulse"></i><div><strong>Response synthesis</strong><small>grounding · policy check · final answer</small></div><span>1.16s</span></li></ol></article>
+            <article class="panel feedback-panel"><div class="panel-heading compact"><div><span class="panel-icon pink"><svg viewBox="0 0 24 24"><path d="M4 19h16M5 16l3-3 3 2 5-7 3 2"/></svg></span><span><strong>Customer signal</strong><small>Top feedback themes · 30 days</small></span></div><button>Explore</button></div><div class="sentiment-ring"><div><strong>72%</strong><small>positive</small></div><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="46"/><circle class="positive" cx="60" cy="60" r="46"/><circle class="negative" cx="60" cy="60" r="46"/></svg></div><div class="theme-bars"><div><span><b>Battery life</b><em>37</em></span><i><b style="width:88%"></b></i></div><div><span><b>Flavor quality</b><em>24</em></span><i><b style="width:62%"></b></i></div><div><span><b>Delivery</b><em>18</em></span><i><b style="width:47%"></b></i></div></div></article>
+            <article class="panel knowledge-panel"><div class="panel-heading compact"><div><span class="panel-icon emerald"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H11v17H6.5A2.5 2.5 0 0 0 4 22Z"/><path d="M20 5.5A2.5 2.5 0 0 0 17.5 3H13v17h4.5A2.5 2.5 0 0 1 20 22Z"/></svg></span><span><strong>Knowledge grounding</strong><small>Evidence used by this mission</small></span></div><button>Library</button></div><div class="document-card"><span class="file-icon">PDF</span><div><strong>Amazon Buyer Messaging Policy</strong><p>Section 4.2 · Permitted messages</p><small><i></i>Relevance 0.94</small></div><button>↗</button></div><div class="document-card"><span class="file-icon doc">DOC</span><div><strong>Product Battery Specification</strong><p>V3.1 · CB-POD series</p><small><i></i>Relevance 0.89</small></div><button>↗</button></div><div class="grounding-status"><svg viewBox="0 0 24 24"><path d="M20 7 10 17l-5-5"/></svg><span><strong>Answer grounded</strong><small>3 citations · no unsupported claims</small></span></div></article>
+          </section>
+        </div>
+      </main>
+    </div>
+    <div class="toast" role="status" aria-live="polite"><span>✓</span><div><strong>Mission created</strong><small>Supervisor is preparing the execution plan.</small></div></div>
+    <script src="app.js"></script>
   </body>
 </html>
