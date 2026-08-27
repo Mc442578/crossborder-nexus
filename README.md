@@ -1,7 +1,7 @@
 <div align="center">
   <img src="docs/assets/nexus-mark.svg" width="82" alt="CrossBorder Nexus 标志" />
-  <h1>CrossBorder Nexus</h1>
-  <p><strong>跨境电商多智能体运营平台</strong></p>
+  <br />
+  <img src="https://readme-typing-svg.demolab.com?font=Noto+Sans+SC&amp;weight=800&amp;size=32&amp;duration=2600&amp;pause=900&amp;color=6C5CE7&amp;center=true&amp;vCenter=true&amp;repeat=true&amp;width=900&amp;height=74&amp;lines=CrossBorder+Nexus;%E8%B7%A8%E5%A2%83%E7%94%B5%E5%95%86%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93%E8%BF%90%E8%90%A5%E5%B9%B3%E5%8F%B0;Agent+Orchestration+%C2%B7+RAG+%C2%B7+Customer+Service" alt="CrossBorder Nexus 动态标题" />
   <p>让运营分析、客户服务、企业知识与高风险决策在同一条 Agent 链路中协作。</p>
 
   <p>
