@@ -4,6 +4,8 @@ CrossBorder 是一个面向作品集展示的跨境电商多 Agent 项目，围�
 
 > 当前仓库定位为 Portfolio Demo：代码结构、接口契约、样例数据、评测集和设计文档完整；默认使用 Mock Amazon 数据，不声称已连接生产店铺，也不把示例报告中的空指标冒充真实线上结果。
 
+![CrossBorder 运营工作台预览](docs/assets/workbench-preview.png)
+
 ## 项目亮点
 
 | 能力 | 设计与实现 | 代码入口 |
