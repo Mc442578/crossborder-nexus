@@ -46,7 +46,7 @@ class SpecialistRegistry:
                 data=value.model_dump() if value else {},
                 tool_traces=[trace],
             )
-        asin = _match(r"B0[A-Z0-9]{8}", message, "B0CBVAPE001")
+        asin = _match(r"B0[A-Z0-9]{8,9}", message, "B0CBVAPE001")
         value, trace = self.amazon.call("get_product", asin=asin)
         summary = (
             f"商品 {value.title} 当前演示售价 {value.price} {value.currency}。"
@@ -62,7 +62,7 @@ class SpecialistRegistry:
         )
 
     def _reviews(self, message: str) -> SpecialistResult:
-        asin = _match(r"B0[A-Z0-9]{8}", message, "B0CBVAPE001")
+        asin = _match(r"B0[A-Z0-9]{8,9}", message, "B0CBVAPE001")
         topics, trace = self.amazon.call("get_feedback_topics", asin=asin)
         if not topics:
             return SpecialistResult(

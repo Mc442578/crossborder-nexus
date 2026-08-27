@@ -1,0 +1,28 @@
+name: quality
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test-and-evaluate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install
+        run: pip install ".[dev]"
+      - name: Verify repository contracts
+        run: python scripts/verify_portfolio.py
+      - name: Run tests
+        run: pytest -q
+      - name: Run evaluation quality gate
+        run: python -m evaluation.run_all
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: evaluation-report
+          path: evaluation/reports/latest_report.json

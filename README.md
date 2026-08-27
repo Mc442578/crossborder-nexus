@@ -1,83 +1,98 @@
-# CrossBorder Nexus 跨境电商多智能体运营平台
+# CrossBorder Nexus
 
-CrossBorder Nexus 是一个面向作品集展示的跨境电商多 Agent 运营平台，围绕运营分析、客户服务、企业知识库、上下文记忆和可靠性评测组织代码。项目采用 Python、FastAPI、LangGraph、PostgreSQL、pgvector 与 Redis 的工程结构，并以可替换的 Amazon Provider 协议隔离外部平台能力。
+### 跨境电商多智能体运营平台
 
-> 当前仓库定位为 Portfolio Demo：代码结构、接口契约、样例数据、评测集和设计文档完整；默认使用 Mock Amazon 数据，不声称已连接生产店铺，也不把示例报告中的空指标冒充真实线上结果。
+[![Python 3.11+](https://img.shields.io/badge/Python-3.11%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.115%2B-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
+[![LangGraph](https://img.shields.io/badge/Orchestration-LangGraph-1C3C3C)](https://langchain-ai.github.io/langgraph/)
+[![Quality](https://github.com/Mc442578/crossborder-nexus/actions/workflows/quality.yml/badge.svg)](https://github.com/Mc442578/crossborder-nexus/actions/workflows/quality.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
+面向跨境电商运营团队的多 Agent 工作台。系统将商品、订单、库存、客户反馈、客服与企业知识库统一为可编排的业务能力，由 Supervisor 完成任务路由，专业 Agent 调用类型化工具执行，并通过记忆、人工确认、可恢复任务和分层评测形成完整闭环。
 
 ![CrossBorder Nexus 运营工作台预览](docs/assets/workbench-preview.png)
 
-## 项目亮点
+## 核心能力
 
-| 能力 | 设计与实现 | 代码入口 |
+| 能力 | 关键实现 | 代码入口 |
 | --- | --- | --- |
-| 多 Agent 编排 | LangGraph `StateGraph` 组织 Supervisor、运营、客服、知识库与评论分析 Agent，支持结构化路由、串行/并行调度和结果聚合 | `backend/app/agents/` |
-| 运营工具与数据分析 | Pydantic 定义商品、订单、库存、客户反馈与消息操作契约，统一封装 Provider 调用与工具轨迹 | `backend/app/amazon_tools/` |
-| 多渠道智能客服 | 将网站等渠道消息归一为统一会话格式，识别 FAQ、订单、物流与售后意图；低置信度或敏感操作转人工 | `backend/app/customer_service/` |
-| RAG 跨境知识库 | 支持 PDF、Word 解析、递归切片、Metadata 过滤、混合召回、重排及引用溯源 | `backend/app/rag/` |
-| 上下文与长期记忆 | 以 `user_id + session_id` 隔离会话，组合最近消息窗口、历史摘要和 PostgreSQL 持久化模型 | `backend/app/memory/`、`backend/app/storage/` |
-| 可靠性与评测 | 提供 Checkpoint、幂等键、指数退避、工具轨迹，以及路由、工具、RAG、异常恢复四类评测 | `backend/app/reliability/`、`evaluation/` |
+| 多 Agent 编排 | LangGraph `StateGraph` 组织 Supervisor、运营、客服、知识库和评论分析 Agent，支持结构化路由、串并行调度与结果聚合 | `backend/app/agents/` |
+| 运营工具与数据分析 | Pydantic 定义商品、订单、库存和客户反馈工具契约，通过可替换 Provider 隔离 Mock 数据与正式 SP-API 适配器 | `backend/app/amazon_tools/` |
+| 多渠道智能客服 | 统一网站、邮件和 Amazon 渠道消息，处理 FAQ、订单、物流和售后意图；低置信度或高风险操作转人工 | `backend/app/customer_service/` |
+| RAG 跨境知识库 | PDF、Word 解析，递归切片，Metadata 过滤，关键词与向量混合召回、重排和引用溯源 | `backend/app/rag/` |
+| 上下文与长期记忆 | 按 `user_id + session_id` 隔离会话，组合最近消息、历史摘要与 PostgreSQL 长期记忆 | `backend/app/memory/`、`backend/app/storage/` |
+| 可靠性与评测 | Checkpoint、幂等键、指数退避、工具轨迹，以及路由、工具、完整轨迹、RAG 和异常恢复五层评测 | `backend/app/reliability/`、`evaluation/` |
 
-## 系统架构
+## 一次请求如何执行
 
 ```mermaid
 flowchart LR
-    UI[运营与客服工作台] --> API[FastAPI]
+    UI[运营与客服工作台] --> API[FastAPI API]
     API --> S[LangGraph Supervisor]
     S --> O[运营 Agent]
     S --> C[客服 Agent]
     S --> K[知识库 Agent]
     S --> R[评论分析 Agent]
-    O --> T[Amazon Typed Tools]
+    O --> T[Typed Amazon Tools]
     C --> T
     R --> T
-    K --> KB[Hybrid RAG + Reranker]
-    T --> M[Mock Provider]
-    T -.生产替换.-> A[Authorized SP-API Adapter]
-    S --> MEM[Redis / PostgreSQL Memory]
-    S --> OBS[Checkpoint / Retry / Trace / Eval]
+    K --> KB[Hybrid Retrieval + Reranker]
+    T --> P[Amazon Provider]
+    S --> MEM[Session + Long-term Memory]
+    S --> SAFE[Checkpoint + Retry + HITL]
+    SAFE --> EVAL[Trace + Evaluation]
 ```
 
-一次请求首先由 FastAPI 校验身份、会话和业务参数，再由 Supervisor 生成结构化路由。专业 Agent 只通过类型明确的工具访问业务数据，RAG 检索先执行租户及文件范围过滤，再完成召回、重排和引用；结果不足、平台动作不可用或售后风险较高时，系统返回转人工任务，而不是让模型自行执行外部副作用。
+FastAPI 先校验身份、会话和业务参数，Supervisor 再生成结构化路由。简单请求进入单个专业 Agent，复合请求按依赖串行或并行执行；专业 Agent 只能通过类型明确的工具访问业务数据。知识库先做租户和文件范围过滤，再完成混合召回、重排和引用。证据不足、工具失败或涉及售后副作用时，系统停止自动执行并生成转人工任务。
 
 ## 代表性场景
 
-- “检查 SKU `CB-POD-BLUE` 的库存，并分析 ASIN `B0CBVAPE001` 的主要负面反馈。”Supervisor 将任务并行交给运营与评论分析 Agent，再聚合库存和反馈主题。
-- “我的订单 `ORDER-DEMO-1001` 到哪里了？”客服 Agent 调用订单工具；需要联系买家时，先检查该订单当前允许的 Messaging Action，再进入人工确认。
-- “平台对买家消息有什么限制？”知识库 Agent 在指定租户和知识空间中执行混合检索，证据充分才回答并返回文件、章节和原文来源。
+- 运营分析：“检查 SKU `CB-POD-BLUE` 的库存，并分析 ASIN `B0CBVAPE001` 的负面反馈。”系统并行执行库存和评论分析，再聚合库存风险与产品改进建议。
+- 客户服务：“订单 `ORDER-DEMO-1001` 到哪里了？”客服 Agent 查询订单和物流；退款、赔付等高风险操作生成待人工确认工单。
+- 规则问答：“平台对买家消息有什么限制？”知识库 Agent 在指定租户和知识空间检索，只有证据充分时才回答，并返回文件、章节和原文来源。
 
-## Amazon 集成边界
+## 可复现评测
 
-仓库中的商品、订单、库存和 Customer Feedback 数据均为合成样例。`AmazonProvider` 协议与 Pydantic 契约用于定义正式适配器边界，默认实现是 `MockAmazonProvider`。生产环境需要另外实现授权、区域端点、角色权限、分页、限流与重试，并根据 Selling Partner API 当前文档校验字段。
+评测不是只看最终答案，而是分别检查 Agent 的决策、动作、完整执行路径和失败恢复。固定数据集全部位于 `evaluation/datasets/`，每个失败用例都会保留预期值与实际值，便于回归定位。
 
-买家沟通不是任意私信：设计为先按订单查询平台允许的消息操作，再由人工确认发送。评论分析示例采用 Customer Feedback 的主题、趋势与片段语义，不宣称能够通过 SP-API 任意抓取全部原始评论。
+| 层级 | 数据集 | 主要指标 | 解决的问题 |
+| --- | ---: | --- | --- |
+| 路由 | 100 条业务 Query | Exact Route Accuracy、Agent Set F1、Macro F1、执行模式准确率 | 是否分给了正确的 Agent |
+| 工具 | 20 条调用样例 | Tool Name Accuracy、Argument Accuracy、Tool Call F1 | 工具选对后，参数是否也正确 |
+| Agent 轨迹 | 12 条端到端任务 | Strict、Unordered、Subsequence、Handoff Accuracy | 中间步骤、工具顺序和人工转接是否合理 |
+| RAG | 20 条问答样例 | Hit Rate、MRR、引用准确率、拒答准确率；可选 Ragas 指标 | 是否检索到正确证据并忠实回答 |
+| 可靠性 | 16 条故障注入样例 | Recovery Pass Rate、Retry Budget、Duplicate Side Effects | 超时重试后是否恢复且不重复执行 |
 
-## 评测设计
+本地确定性基线可统一执行 `python -m evaluation.run_all`，结果写入 [latest_report.json](evaluation/reports/latest_report.json)。`evaluation/thresholds.json` 定义最低质量门槛，任一关键指标退化都会让命令和 GitHub Actions 失败。Ragas 忠实度、上下文精确率和 LLM 轨迹裁判需要配置评审模型，未运行时保持 `null`，不会用其他项目的成绩或示例值替代。本项目的完整口径见 [评测设计](docs/evaluation.md)。
 
-`evaluation/datasets/` 提供可审查的固定数据集：100 条路由样例、20 条工具调用样例、20 条 RAG 样例和 16 条故障恢复样例。对应脚本分别检查路由准确率、工具名称与参数、检索命中/拒答行为，以及重试和幂等恢复。
-
-`evaluation/reports/example_report.json` 只定义报告结构，其状态明确标记为 `illustrative`，没有预填 95%、91.9% 或 90% 等未经本仓库实际运行得到的成绩。完成真实模型与 RAGAS 评测后，才应把报告改为 `measured`，并同时保存模型版本、数据集版本、基线和运行时间。
-
-## 目录结构
+## 项目结构
 
 | 目录 | 内容 |
 | --- | --- |
-| `backend/app/agents/` | Supervisor、路由、专业 Agent 与 LangGraph 图 |
+| `backend/app/agents/` | Supervisor、结构化路由、专业 Agent 与 LangGraph 图 |
 | `backend/app/amazon_tools/` | Amazon 工具契约、Mock Provider 和统一服务层 |
-| `backend/app/customer_service/` | 渠道消息、客服意图和人工转接 |
-| `backend/app/rag/` | 文档解析、切片、检索、重排与引用 |
-| `backend/app/memory/` | 短期上下文、摘要和长期记忆服务 |
-| `backend/app/reliability/` | 重试、幂等和调用轨迹 |
-| `evaluation/` | 数据集生成器、四类评测脚本和报告格式 |
-| `frontend/` | 无构建依赖的静态工作台预览 |
+| `backend/app/customer_service/` | 渠道归一、客服意图、风险判断与人工转接 |
+| `backend/app/rag/` | 文档解析、切片、混合检索、重排和引用 |
+| `backend/app/memory/` | 短期上下文、历史摘要与长期记忆服务 |
+| `backend/app/reliability/` | 重试、幂等、Checkpoint 和调用轨迹 |
+| `evaluation/` | 五类数据集、评测脚本和统一报告入口 |
+| `frontend/` | 无构建依赖的运营工作台预览 |
 | `docs/` | 架构、需求、调研、模块映射和设计决策 |
 
 ## 本地查看
 
-静态工作台无需安装依赖，直接用浏览器打开 `frontend/index.html` 即可查看产品界面。若需要验证 Python 工程结构，可在 Python 3.11 以上环境安装项目的 `dev` 依赖，然后执行 `python scripts/verify_portfolio.py` 与 `pytest`。
+静态工作台无需安装依赖，直接用浏览器打开 `frontend/index.html`。如需验证后端工程，在 Python 3.11 以上环境安装开发依赖后，执行 `python scripts/verify_portfolio.py`、`pytest` 和 `python -m evaluation.run_all`。
 
-Docker 相关文件用于说明交付形态。复制 `.env.example` 为 `.env` 后可作为后续联调起点，但本仓库不以“所有生产依赖已部署”作为展示前提。
+默认 Provider 使用合成的 Amazon 商品、订单、库存和 Customer Feedback 数据，因此展示和本地评测不需要生产店铺凭证。正式接入时需要实现授权、区域端点、分页、限流和权限控制，并按照 Selling Partner API 当前文档校验字段。
 
-## 文档导航
+## 设计边界
+
+- 当前仓库提供完整的架构、接口契约、样例数据、评测集和展示界面；默认数据为可审查的合成样例。
+- `AmazonProvider` 是正式适配器边界，`MockAmazonProvider` 是默认演示实现，不代表已经连接生产店铺。
+- 只有由仓库内评测脚本生成并保留运行配置的报告才能作为本项目指标；`illustrative` 报告仅说明格式。
+- 买家沟通严格限定为订单允许的消息操作，退款、赔付和发送消息等外部副作用需要人工确认。
+
+## 文档
 
 - [项目范围与成功标准](docs/project-brief.md)
 - [需求和非目标](docs/requirements.md)
@@ -85,8 +100,8 @@ Docker 相关文件用于说明交付形态。复制 `.env.example` 为 `.env` �
 - [六项能力与代码映射](docs/module-mapping.md)
 - [评测口径与结果边界](docs/evaluation.md)
 - [调研结论](docs/research.md)
-- [独立整合决策](docs/decisions/0001-independent-integration.md)
+- [独立实现决策](docs/decisions/0001-independent-integration.md)
 
-## 来源与许可证
+## 开源与许可证
 
-本仓库是独立实现，不是将多个项目源码机械拼接后重新署名。设计参考、许可证和复用边界记录在 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)；当前仓库代码使用 [MIT License](LICENSE)。后续如复制或实质改写第三方源文件，必须补充原始路径、提交版本、版权声明和修改说明。
+CrossBorder Nexus 采用独立代码结构实现，相关项目用于架构、评测和产品设计参考。参考来源、许可证与代码复用边界记录在 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)，本仓库代码使用 [MIT License](LICENSE)。如后续复制或实质改写第三方源文件，将同步保留原始路径、版本、版权声明和修改说明。

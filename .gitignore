@@ -9,3 +9,4 @@ __pycache__/
 *.sqlite3
 evaluation/reports/*.json
 !evaluation/reports/example_report.json
+!evaluation/reports/latest_report.json

@@ -1,0 +1,139 @@
+{
+  "result_status": "measured-local",
+  "evaluated_at": "2026-08-27T16:45:00.996592+00:00",
+  "scope": "deterministic local baseline with mock Amazon data",
+  "harness_version": "1.0",
+  "runtime": {
+    "python": "3.12.13"
+  },
+  "datasets": {
+    "router_eval.jsonl": {
+      "cases": 100,
+      "sha256": "090096ac1870c3139971b2d4e10112ea0acf7fb1bc7f81ff15d876a5701d11e5"
+    },
+    "tool_eval.jsonl": {
+      "cases": 20,
+      "sha256": "3b3435e3b8e026a8d6640ee2e4097d8fabeed17a7b1d61b841da758c3266c9a7"
+    },
+    "trajectory_eval.jsonl": {
+      "cases": 12,
+      "sha256": "37e38d99e117660a22fb29ab32d366b825f9e55c3bd62e48f52c39947b2a74dc"
+    },
+    "rag_eval.jsonl": {
+      "cases": 20,
+      "sha256": "6e71548dde39e6b04ce98cf6c4fdc1ed2c6f1e3dbe9d7687a8fd6642a072efea"
+    },
+    "recovery_eval.jsonl": {
+      "cases": 16,
+      "sha256": "72e534a39dac695867186297edbc0091c069a1f3a1d200cf36339f918227eef4"
+    }
+  },
+  "router": {
+    "result_status": "measured-local",
+    "evaluator": "deterministic StructuredRouter baseline",
+    "evaluated_at": "2026-08-27T16:45:00.973483+00:00",
+    "dataset_size": 100,
+    "exact_route_accuracy": 1.0,
+    "execution_mode_accuracy": 1.0,
+    "agent_set_f1": 1.0,
+    "primary_route_macro_f1": 1.0,
+    "mistakes": [],
+    "limitations": "Measures the local deterministic baseline, not a production LLM."
+  },
+  "tools": {
+    "result_status": "measured-local",
+    "evaluator": "exact tool name and argument match",
+    "evaluated_at": "2026-08-27T16:45:00.983057+00:00",
+    "dataset_size": 20,
+    "tool_name_accuracy": 1.0,
+    "tool_argument_accuracy": 1.0,
+    "tool_call_f1": 1.0,
+    "mistakes": [],
+    "limitations": "Uses the local specialist implementation and mock Amazon provider."
+  },
+  "trajectory": {
+    "result_status": "measured-local",
+    "evaluator": "deterministic end-to-end agent trajectory contract",
+    "evaluated_at": "2026-08-27T16:45:00.991327+00:00",
+    "dataset_size": 12,
+    "strict_trajectory_accuracy": 1.0,
+    "unordered_tool_accuracy": 1.0,
+    "tool_subsequence_accuracy": 1.0,
+    "trajectory_tool_f1": 1.0,
+    "handoff_accuracy": 1.0,
+    "mistakes": [],
+    "limitations": "Checks the local deterministic graph and mock provider, not model reasoning quality."
+  },
+  "rag": {
+    "result_status": "measured-local",
+    "evaluator": "citation/refusal contract check",
+    "evaluated_at": "2026-08-27T16:45:00.993327+00:00",
+    "dataset_size": 20,
+    "contract_pass_rate": 1.0,
+    "retrieval_hit_rate": 1.0,
+    "mean_reciprocal_rank": 1.0,
+    "citation_source_accuracy": 1.0,
+    "refusal_accuracy": 1.0,
+    "ragas_faithfulness": null,
+    "ragas_context_precision": null,
+    "mistakes": [],
+    "limitations": "Faithfulness and context precision remain null until Ragas is run with a recorded evaluator model and ground-truth dataset."
+  },
+  "recovery": {
+    "result_status": "measured-local",
+    "evaluator": "fault injection plus idempotency ledger",
+    "evaluated_at": "2026-08-27T16:45:00.994326+00:00",
+    "dataset_size": 16,
+    "recovery_pass_rate": 1.0,
+    "retry_budget_compliance": 1.0,
+    "duplicate_side_effects": 0,
+    "mistakes": [],
+    "limitations": "In-process fault simulation; not a distributed crash-recovery benchmark."
+  },
+  "quality_gate": {
+    "status": "pass",
+    "checks": {
+      "router.exact_route_accuracy": {
+        "actual": 1.0,
+        "minimum": 0.9,
+        "passed": true
+      },
+      "tools.tool_argument_accuracy": {
+        "actual": 1.0,
+        "minimum": 0.9,
+        "passed": true
+      },
+      "trajectory.strict_trajectory_accuracy": {
+        "actual": 1.0,
+        "minimum": 0.85,
+        "passed": true
+      },
+      "trajectory.handoff_accuracy": {
+        "actual": 1.0,
+        "minimum": 0.9,
+        "passed": true
+      },
+      "rag.contract_pass_rate": {
+        "actual": 1.0,
+        "minimum": 0.9,
+        "passed": true
+      },
+      "recovery.recovery_pass_rate": {
+        "actual": 1.0,
+        "minimum": 1.0,
+        "passed": true
+      },
+      "recovery.duplicate_side_effects": {
+        "actual": 0,
+        "maximum": 0,
+        "passed": true
+      }
+    }
+  },
+  "model_judged_metrics": {
+    "status": "not_run",
+    "ragas_faithfulness": null,
+    "ragas_context_precision": null,
+    "trajectory_llm_judge": null
+  }
+}

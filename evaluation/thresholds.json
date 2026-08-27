@@ -1,0 +1,9 @@
+{
+  "router.exact_route_accuracy": 0.9,
+  "tools.tool_argument_accuracy": 0.9,
+  "trajectory.strict_trajectory_accuracy": 0.85,
+  "trajectory.handoff_accuracy": 0.9,
+  "rag.contract_pass_rate": 0.9,
+  "recovery.recovery_pass_rate": 1.0,
+  "recovery.duplicate_side_effects": 0
+}

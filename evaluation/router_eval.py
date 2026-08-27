@@ -1,7 +1,7 @@
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from backend.app.agents.router import StructuredRouter
-from evaluation.common import load_jsonl, macro_f1, ratio, write_report
+from evaluation.common import load_jsonl, macro_f1, ratio, set_f1, write_report
 
 
 def run() -> dict:
@@ -10,6 +10,8 @@ def run() -> dict:
     expected_primary: list[str] = []
     predicted_primary: list[str] = []
     exact = 0
+    mode_correct = 0
+    agent_set_scores: list[float] = []
     mistakes: list[dict] = []
     for case in cases:
         decision = router.route(case["query"])
@@ -17,6 +19,8 @@ def run() -> dict:
         expected = case["expected_agents"]
         expected_primary.append(expected[0])
         predicted_primary.append(predicted[0])
+        mode_correct += int(decision.execution_mode == case["execution_mode"])
+        agent_set_scores.append(set_f1(expected, predicted))
         if predicted == expected and decision.execution_mode == case["execution_mode"]:
             exact += 1
         else:
@@ -24,9 +28,11 @@ def run() -> dict:
     report = {
         "result_status": "measured-local",
         "evaluator": "deterministic StructuredRouter baseline",
-        "evaluated_at": datetime.now(timezone.utc).isoformat(),
+        "evaluated_at": datetime.now(UTC).isoformat(),
         "dataset_size": len(cases),
         "exact_route_accuracy": ratio(exact, len(cases)),
+        "execution_mode_accuracy": ratio(mode_correct, len(cases)),
+        "agent_set_f1": sum(agent_set_scores) / len(agent_set_scores),
         "primary_route_macro_f1": macro_f1(expected_primary, predicted_primary),
         "mistakes": mistakes,
         "limitations": "Measures the local deterministic baseline, not a production LLM.",

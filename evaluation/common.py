@@ -1,7 +1,7 @@
 import json
+from collections.abc import Iterable
 from pathlib import Path
-from typing import Any, Iterable
-
+from typing import Any
 
 ROOT = Path(__file__).resolve().parent
 
@@ -35,3 +35,18 @@ def macro_f1(expected: Iterable[str], predicted: Iterable[str]) -> float:
         recall = tp / (tp + fn) if tp + fn else 0.0
         scores.append(2 * precision * recall / (precision + recall) if precision + recall else 0.0)
     return sum(scores) / len(scores) if scores else 0.0
+
+
+def set_f1(expected: Iterable[str], predicted: Iterable[str]) -> float:
+    expected_set, predicted_set = set(expected), set(predicted)
+    if not expected_set and not predicted_set:
+        return 1.0
+    true_positive = len(expected_set & predicted_set)
+    precision = true_positive / len(predicted_set) if predicted_set else 0.0
+    recall = true_positive / len(expected_set) if expected_set else 0.0
+    return 2 * precision * recall / (precision + recall) if precision + recall else 0.0
+
+
+def is_subsequence(expected: Iterable[str], predicted: Iterable[str]) -> bool:
+    iterator = iter(predicted)
+    return all(any(item == candidate for candidate in iterator) for item in expected)

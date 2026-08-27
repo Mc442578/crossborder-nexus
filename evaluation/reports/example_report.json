@@ -11,8 +11,19 @@
     "tool_name_accuracy": null,
     "tool_argument_accuracy": null
   },
+  "trajectory": {
+    "dataset_size": 12,
+    "strict_trajectory_accuracy": null,
+    "unordered_tool_accuracy": null,
+    "tool_subsequence_accuracy": null,
+    "handoff_accuracy": null
+  },
   "rag": {
     "dataset_size": 20,
+    "retrieval_hit_rate": null,
+    "mean_reciprocal_rank": null,
+    "citation_source_accuracy": null,
+    "refusal_accuracy": null,
     "ragas_faithfulness": null,
     "ragas_context_precision": null
   },
