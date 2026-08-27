@@ -3,9 +3,9 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "crossborder-ai-agent"
+name = "crossborder-nexus"
 version = "0.1.0"
-description = "Portfolio reference implementation of a cross-border e-commerce multi-agent platform"
+description = "Portfolio reference implementation of the CrossBorder Nexus multi-agent operations platform"
 requires-python = ">=3.11"
 license = { text = "MIT" }
 dependencies = [

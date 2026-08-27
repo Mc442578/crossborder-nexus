@@ -2,7 +2,7 @@
 
 ## Users and problem
 
-CrossBorder is designed for cross-border e-commerce operators and support staff who currently switch between seller-platform data, policy documents, customer messages, and spreadsheets. The demo presents one workspace where an AI supervisor can route work to specialized agents while deterministic services enforce permissions and outbound-action rules.
+CrossBorder Nexus is designed for cross-border e-commerce operators and support staff who currently switch between seller-platform data, policy documents, customer messages, and spreadsheets. The demo presents one workspace where an AI supervisor can route work to specialized agents while deterministic services enforce permissions and outbound-action rules.
 
 ## Deliverable
 

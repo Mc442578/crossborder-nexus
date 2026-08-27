@@ -4,7 +4,7 @@ Date: 2026-08-27
 
 ## Decision
 
-Create a new MIT-licensed CrossBorder repository instead of renaming or mechanically merging an existing application.
+Create a new MIT-licensed CrossBorder Nexus repository instead of renaming or mechanically merging an existing application.
 
 ## Reasons
 

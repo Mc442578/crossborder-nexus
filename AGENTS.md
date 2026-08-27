@@ -1,4 +1,4 @@
-# CrossBorder Repository Instructions
+# CrossBorder Nexus Repository Instructions
 
 ## Project boundary
 

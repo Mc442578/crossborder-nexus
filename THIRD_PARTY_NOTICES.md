@@ -1,6 +1,6 @@
 # Third-party references and attribution
 
-CrossBorder is an independent portfolio integration project. The repository does not claim authorship of the reference projects listed below.
+CrossBorder Nexus is an independent portfolio integration project. The repository does not claim authorship of the reference projects listed below.
 
 ## Design references
 

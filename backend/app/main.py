@@ -9,7 +9,7 @@ from backend.app.models import ChatRequest, ChatResponse
 
 
 app = FastAPI(
-    title="CrossBorder AI Agent Platform",
+    title="CrossBorder Nexus Multi-Agent Operations Platform",
     version="0.1.0",
     description="Portfolio API. Amazon operations use mock data by default.",
 )
