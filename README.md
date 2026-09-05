@@ -23,7 +23,7 @@
 
 ![CrossBorder Nexus AI 运营指挥中心](docs/assets/workbench-preview.png)
 
-CrossBorder Nexus 面向跨境电商运营与客户服务团队，将商品、订单、库存、客户反馈和企业知识统一成可编排的业务能力。Supervisor 负责理解目标和安排执行，专业 Agent 通过类型化工具访问业务数据，最终以可追踪证据、人工确认和可复现评测闭合任务。
+CrossBorder Nexus 面向跨境电商运营与客户服务团队，将选品研究、商品、订单、库存、客户反馈和企业知识统一到同一仓库与工作入口。Supervisor 负责理解运营目标和安排执行，专业 Agent 通过类型化工具访问业务数据；独立的选品工作台则通过可审查 Pipeline 汇总公开网页、商品、趋势、评论和成本信号，最终以来源证据、人工确认和可复现评测闭合任务。
 
 | 从业务问题到决策 | 从生成答案到可信证据 | 从自动执行到安全边界 |
 | --- | --- | --- |
@@ -34,6 +34,7 @@ CrossBorder Nexus 面向跨境电商运营与客户服务团队，将商品、�
 | 能力 | 关键实现 | 代码入口 |
 | --- | --- | --- |
 | 多 Agent 编排 | LangGraph `StateGraph` 组织 Supervisor、运营、客服、知识库和评论分析 Agent，支持结构化路由、串并行调度与结果聚合 | `backend/app/agents/` |
+| 跨境选品工作台 | Vue 3 + TypeScript + Pinia 前端与 Node BFF 组成独立子模块；支持 mock/live 数据源、Tavily/DeepSeek/SerpApi 适配、Amazon/Walmart/TikTok 渠道归一、SSE 进度、TTL 缓存和确定性评分 | `product-selection/` |
 | 运营工具与数据分析 | Pydantic 定义商品、订单、库存和客户反馈工具契约，通过可替换 Provider 隔离 Mock 数据与正式 SP-API 适配器 | `backend/app/amazon_tools/` |
 | 多渠道智能客服 | 统一网站、邮件和 Amazon 渠道消息，处理 FAQ、订单、物流和售后意图；低置信度或高风险操作转人工 | `backend/app/customer_service/` |
 | RAG 跨境知识库 | PDF、Word 解析，递归切片，Metadata 过滤，关键词与向量混合召回、重排和引用溯源 | `backend/app/rag/` |
@@ -44,7 +45,10 @@ CrossBorder Nexus 面向跨境电商运营与客户服务团队，将商品、�
 
 ```mermaid
 flowchart LR
-    UI[运营与客服工作台] --> API[FastAPI API]
+    UI[统一工作入口] --> API[FastAPI API]
+    UI --> PICK[Vue 选品工作台]
+    PICK --> BFF[Node BFF]
+    BFF --> EXT[公开网页与电商数据适配器]
     API --> S[LangGraph Supervisor]
     S --> O[运营 Agent]
     S --> C[客服 Agent]
@@ -65,6 +69,7 @@ FastAPI 先校验身份、会话和业务参数，Supervisor 再生成结构化�
 ## 代表性场景
 
 - 运营分析：“检查 SKU `CB-POD-BLUE` 的库存，并分析 ASIN `B0CBVAPE001` 的负面反馈。”系统并行执行库存和评论分析，再聚合库存风险与产品改进建议。
+- 选品研究：输入美国服装品类、目标渠道与成本参数，工作台按依赖执行品类发现、竞品、趋势、评论、单位经济性和结论步骤；live 模式保留来源与缓存状态，缺少授权的渠道明确降级而不伪造数据。
 - 客户服务：“订单 `ORDER-DEMO-1001` 到哪里了？”客服 Agent 查询订单和物流；退款、赔付等高风险操作生成待人工确认工单。
 - 规则问答：“平台对买家消息有什么限制？”知识库 Agent 在指定租户和知识空间检索，只有证据充分时才回答，并返回文件、章节和原文来源。
 
@@ -94,17 +99,20 @@ FastAPI 先校验身份、会话和业务参数，Supervisor 再生成结构化�
 | `backend/app/reliability/` | 重试、幂等、Checkpoint 和调用轨迹 |
 | `evaluation/` | 五类数据集、评测脚本和统一报告入口 |
 | `frontend/` | 无构建依赖的运营工作台预览 |
+| `product-selection/` | Vue 3 选品界面、Node BFF、数据适配器、Pipeline、分析规则与自动化测试 |
 | `docs/` | 架构、需求、调研、模块映射和设计决策 |
 
 ## 本地查看
 
-静态工作台无需安装依赖，直接用浏览器打开 `frontend/index.html`。如需验证后端工程，在 Python 3.11 以上环境安装开发依赖后，执行 `python scripts/verify_portfolio.py`、`pytest` 和 `python -m evaluation.run_all`。
+静态运营工作台无需安装依赖，直接用浏览器打开 `frontend/index.html`。选品工作台需要 Node.js 24+：进入 `product-selection/`，执行 `npm ci`、按需复制 `.env.example` 为 `.env`，再运行 `npm run dev`，访问 `http://localhost:5273/`；mock 模式不需要任何 Key。也可执行 `docker compose up product-selection` 单独启动该子模块。后端工程在 Python 3.11+ 环境安装开发依赖后，通过 `python scripts/verify_portfolio.py`、`pytest` 和 `python -m evaluation.run_all` 验证。
 
 默认 Provider 使用合成的 Amazon 商品、订单、库存和 Customer Feedback 数据，因此展示和本地评测不需要生产店铺凭证。正式接入时需要实现授权、区域端点、分页、限流和权限控制，并按照 Selling Partner API 当前文档校验字段。
 
 ## 设计边界
 
 - 当前仓库提供完整的架构、接口契约、样例数据、评测集和展示界面；默认数据为可审查的合成样例。
+- 选品工作台保留 mock 离线模式；live 模式是否能返回数据取决于相应 API Key 与渠道授权。TikTok 商品查询需要合法 Seller/Partner 授权，竞品评论不接入；少量评论只能形成待复核主题，不能代表整个品类。
+- 选品利润是基于用户输入成本与渠道费用的简化单件毛利，不等同于包含履约、仓储、税费、退货和促销后的净利润；报告当前仅保存在浏览器 `localStorage`。
 - `AmazonProvider` 是正式适配器边界，`MockAmazonProvider` 是默认演示实现，不代表已经连接生产店铺。
 - 只有由仓库内评测脚本生成并保留运行配置的报告才能作为本项目指标；`illustrative` 报告仅说明格式。
 - 买家沟通严格限定为订单允许的消息操作，退款、赔付和发送消息等外部副作用需要人工确认。
@@ -114,11 +122,12 @@ FastAPI 先校验身份、会话和业务参数，Supervisor 再生成结构化�
 - [项目范围与成功标准](docs/project-brief.md)
 - [需求和非目标](docs/requirements.md)
 - [系统架构与请求链路](docs/architecture.md)
-- [六项能力与代码映射](docs/module-mapping.md)
+- [七项能力与代码映射](docs/module-mapping.md)
 - [评测口径与结果边界](docs/evaluation.md)
 - [调研结论](docs/research.md)
 - [独立实现决策](docs/decisions/0001-independent-integration.md)
+- [选品工作台融合说明](docs/product-selection-integration.md)
 
 ## 开源与许可证
 
-CrossBorder Nexus 采用独立代码结构实现，相关项目用于架构、评测和产品设计参考。参考来源、许可证与代码复用边界记录在 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)，本仓库代码使用 [MIT License](LICENSE)。如后续复制或实质改写第三方源文件，将同步保留原始路径、版本、版权声明和修改说明。
+CrossBorder Nexus 原有代码采用独立结构实现并使用 [MIT License](LICENSE)。本次复制进入 `product-selection/` 的代码来源、版本与许可边界单独记录在 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)；在上游许可明确前，该子目录不包含在本仓库 MIT 授权范围内。

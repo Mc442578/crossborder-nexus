@@ -6,6 +6,11 @@ ROOT = Path(__file__).resolve().parents[1]
 REQUIRED = {
     "multi_agent": ["backend/app/agents/graph.py", "backend/app/agents/router.py"],
     "operations": ["backend/app/amazon_tools/service.py", "sample_data/products.json"],
+    "product_selection": [
+        "product-selection/package.json",
+        "product-selection/server/index.mjs",
+        "product-selection/src/core/pipeline/engine.ts",
+    ],
     "customer_service": ["backend/app/customer_service/service.py", "frontend/index.html"],
     "rag": ["backend/app/rag/ingestion.py", "backend/app/rag/retrieval.py"],
     "memory": ["backend/app/memory/service.py", "backend/app/storage/models.py"],
@@ -52,7 +57,7 @@ def main() -> int:
         for failure in failures:
             print(f"- {failure}")
         return 1
-    print("Portfolio audit passed: six capabilities, datasets, notices, and demo assets present.")
+    print("Portfolio audit passed: seven capabilities, datasets, notices, and demo assets present.")
     return 0
 
 

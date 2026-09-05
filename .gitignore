@@ -7,6 +7,9 @@ __pycache__/
 .ruff_cache/
 *.db
 *.sqlite3
+product-selection/node_modules/
+product-selection/dist/
+product-selection/.env
 evaluation/reports/*.json
 !evaluation/reports/example_report.json
 !evaluation/reports/latest_report.json

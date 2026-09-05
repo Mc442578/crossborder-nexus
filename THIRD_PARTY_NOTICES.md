@@ -17,6 +17,7 @@ CrossBorder Nexus is an independent portfolio integration project. The repositor
 | [Langfuse](https://github.com/langfuse/langfuse) | MIT core with additional enterprise licensing | Trace, latency, token and tool-call presentation | Product-pattern reference only |
 | [assistant-ui](https://github.com/assistant-ui/assistant-ui) | MIT | Chat, tool result and human-approval interaction patterns | Product-pattern reference only |
 | [Readme Typing SVG](https://github.com/DenverCoder1/readme-typing-svg) | MIT | Animated typing header for the repository landing page | Referenced as an externally generated SVG image; no source file copied |
+| [product-picker](https://github.com/dariuswiki/product-picker) | No separate license file present in imported snapshot | Cross-border product-selection workbench | Source snapshot at commit `a17015b` copied into `product-selection/`; integration changes add repository navigation, CI and container startup |
 
 ## Deliberately excluded code
 
@@ -24,3 +25,5 @@ CrossBorder Nexus is an independent portfolio integration project. The repositor
 - ClipForge uses AGPL-3.0. No ClipForge source code is included.
 
 If source code is copied or substantially adapted later, the contributor must add the original file path, commit, copyright notice, license, and modification summary here and preserve any required file-level notice.
+
+The `product-selection/` subtree is excluded from this repository's MIT license until the upstream rights holder supplies an explicit license or other redistribution terms. Its provenance and local integration changes are also recorded in `product-selection/NOTICE.md`.
