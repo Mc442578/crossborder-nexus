@@ -4,7 +4,10 @@
 
 ```mermaid
 flowchart LR
-    UI[Operator and support workbench] --> API[FastAPI contracts]
+    UI[Unified workspace entry] --> API[FastAPI contracts]
+    UI --> PICK[Product-selection workbench]
+    PICK --> BFF[Node BFF and server-side pipeline]
+    BFF --> SOURCES[Tavily, SerpApi, DeepSeek and channel adapters]
     API --> SUP[LangGraph Supervisor]
     SUP --> OPS[Operations Agent]
     SUP --> CS[Customer Service Agent]
@@ -31,11 +34,12 @@ flowchart LR
 6. Specialist results and traces are aggregated into one response.
 7. Low-confidence, missing-evidence, restricted-message, and after-sales operations produce a human handoff instead of an autonomous external action.
 
-## Six resume capabilities mapped to code
+## Seven resume capabilities mapped to code
 
 | Capability | Main implementation |
 | --- | --- |
 | Multi-agent orchestration | `backend/app/agents/graph.py`, `router.py`, `specialists.py` |
+| Product-selection research | `product-selection/src/`, `product-selection/server/` |
 | Operations tools and analytics | `backend/app/amazon_tools/`, `sample_data/` |
 | Multi-channel customer service | `backend/app/customer_service/`, `frontend/` |
 | RAG knowledge base | `backend/app/rag/` |
@@ -60,3 +64,7 @@ flowchart LR
 | Memory | In-process reference service and SQL models | Redis session store and PostgreSQL repositories |
 | Checkpoint | LangGraph memory saver | PostgreSQL/Redis checkpointer with retention policy |
 | Observability | Typed trace schema | OpenTelemetry exporter and dashboards |
+
+## Product-selection integration
+
+`product-selection/` is an independently runnable Vue and Node boundary inside the repository. In mock mode the browser runs the deterministic pipeline without credentials. In live mode the Node BFF protects API keys, executes the pipeline, normalizes channel data, caches successful results and streams progress through server-sent events. The FastAPI agent runtime does not call the Node module implicitly, so selection research remains an explicit operator workflow with clear failure and authorization states.

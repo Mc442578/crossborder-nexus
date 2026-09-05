@@ -18,7 +18,7 @@ document.querySelectorAll('.period-switch button').forEach((button) => {
   });
 });
 
-document.querySelectorAll('nav a').forEach((item) => {
+document.querySelectorAll('nav a[data-view]').forEach((item) => {
   item.addEventListener('click', (event) => {
     event.preventDefault();
     document.querySelector('nav a.active').classList.remove('active');

@@ -13,6 +13,11 @@ jobs:
         with:
           python-version: "3.12"
           cache: pip
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: product-selection/package-lock.json
       - name: Install
         run: pip install ".[dev]"
       - name: Verify repository contracts
@@ -21,6 +26,18 @@ jobs:
         run: pytest -q
       - name: Run evaluation quality gate
         run: python -m evaluation.run_all
+      - name: Install product-selection dependencies
+        working-directory: product-selection
+        run: npm ci
+      - name: Test product-selection workbench
+        working-directory: product-selection
+        run: npm test
+      - name: Type-check product-selection workbench
+        working-directory: product-selection
+        run: npm run typecheck
+      - name: Build product-selection workbench
+        working-directory: product-selection
+        run: npm run build
       - uses: actions/upload-artifact@v4
         if: always()
         with:
